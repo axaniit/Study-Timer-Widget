@@ -1,13 +1,14 @@
 :root {
-  --bg: #0b0b0c;
-  --card: #111113;
-  --card-soft: #171719;
-  --gold: #c8a64b;
-  --gold-soft: rgba(200, 166, 75, 0.2);
-  --text: #f5f1e8;
-  --muted: #b8b1a1;
-  --border: rgba(200, 166, 75, 0.45);
-  --danger: #9d4c4c;
+  --bg: #fff7fb;
+  --card: #ffffff;
+  --card-soft: #fff0f7;
+  --pink: #f4a6c6;
+  --pink-deep: #d96f9f;
+  --pink-soft: rgba(244, 166, 198, 0.28);
+  --text: #3b2430;
+  --muted: #856575;
+  --border: rgba(217, 111, 159, 0.35);
+  --danger: #b44b5d;
 }
 
 * {
@@ -17,7 +18,7 @@
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(200, 166, 75, 0.08), transparent 35%),
+    radial-gradient(circle at top, rgba(244, 166, 198, 0.22), transparent 35%),
     var(--bg);
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
@@ -36,7 +37,7 @@ body {
 
 .header h1 {
   margin: 0;
-  color: var(--gold);
+  color: var(--pink-deep);
   font-size: clamp(2rem, 6vw, 3rem);
   letter-spacing: 0.03em;
 }
@@ -66,8 +67,8 @@ body {
 }
 
 .tab-button.active {
-  background: var(--gold);
-  color: var(--bg);
+  background: var(--pink);
+  color: #3b2430;
 }
 
 .tab-panel {
@@ -85,7 +86,7 @@ body {
 }
 
 .status-message.error {
-  color: #ffb3b3;
+  color: var(--danger);
 }
 
 .timer-grid {
@@ -96,11 +97,11 @@ body {
 
 .timer-card,
 .log-card {
-  background: linear-gradient(180deg, var(--card), #0f0f10);
+  background: linear-gradient(180deg, var(--card), #fffafd);
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 24px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 18px 40px rgba(217, 111, 159, 0.13);
 }
 
 .timer-card {
@@ -109,7 +110,7 @@ body {
 
 .subject-title {
   margin: 0 0 14px;
-  color: var(--gold);
+  color: var(--pink-deep);
   font-size: 1.7rem;
 }
 
@@ -126,13 +127,13 @@ body {
 
 .progress-bg {
   fill: none;
-  stroke: #2a2a2d;
+  stroke: #f6dbe8;
   stroke-width: 14;
 }
 
 .progress-fill {
   fill: none;
-  stroke: var(--gold);
+  stroke: var(--pink-deep);
   stroke-width: 14;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.25s ease;
@@ -148,7 +149,7 @@ body {
 }
 
 .percent {
-  color: var(--gold);
+  color: var(--pink-deep);
   font-size: 2.2rem;
   line-height: 1;
 }
@@ -186,30 +187,30 @@ body {
 }
 
 .start-button {
-  background: var(--gold);
-  color: var(--bg);
+  background: var(--pink);
+  color: #3b2430;
 }
 
 .pause-button {
-  background: #2a2a2d;
+  background: #fff0f7;
   color: var(--text);
-  border: 1px solid #4a4a4d;
+  border: 1px solid var(--border);
 }
 
 .reset-button {
   background: transparent;
-  color: var(--gold);
+  color: var(--pink-deep);
   border: 1px solid var(--border);
 }
 
 .running-note {
   margin-top: 12px;
-  color: var(--gold);
+  color: var(--pink-deep);
   font-size: 0.9rem;
 }
 
 .log-card h2 {
-  color: var(--gold);
+  color: var(--pink-deep);
   text-align: center;
   margin-top: 0;
 }
@@ -222,13 +223,13 @@ body {
 
 .week-row {
   background: var(--card-soft);
-  border: 1px solid rgba(200, 166, 75, 0.22);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 16px;
 }
 
 .week-title {
-  color: var(--gold);
+  color: var(--pink-deep);
   font-weight: bold;
   margin-bottom: 8px;
 }
