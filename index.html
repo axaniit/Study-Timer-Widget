@@ -1,1 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Study Timer Widget</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <main class="app">
+    <header class="header">
+      <h1>Study Timer</h1>
+      <p>Track weekly study goals for Orgo and Micro.</p>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-button active" data-tab="dashboard">Dashboard</button>
+      <button class="tab-button" data-tab="log">Weekly Log</button>
+    </nav>
+
+    <section id="dashboard" class="tab-panel active">
+      <div id="statusMessage" class="status-message">Loading timers...</div>
+      <div id="timerGrid" class="timer-grid"></div>
+    </section>
+
+    <section id="log" class="tab-panel">
+      <div class="log-card">
+        <h2>Weekly Numbers</h2>
+        <div id="weeklyList" class="weekly-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
