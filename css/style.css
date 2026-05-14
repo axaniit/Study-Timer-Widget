@@ -1,1 +1,261 @@
+:root {
+  --bg: #0b0b0c;
+  --card: #111113;
+  --card-soft: #171719;
+  --gold: #c8a64b;
+  --gold-soft: rgba(200, 166, 75, 0.2);
+  --text: #f5f1e8;
+  --muted: #b8b1a1;
+  --border: rgba(200, 166, 75, 0.45);
+  --danger: #9d4c4c;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(200, 166, 75, 0.08), transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.app {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.header h1 {
+  margin: 0;
+  color: var(--gold);
+  font-size: clamp(2rem, 6vw, 3rem);
+  letter-spacing: 0.03em;
+}
+
+.header p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.tab-button {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+}
+
+.tab-button.active {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.status-message {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.status-message.error {
+  color: #ffb3b3;
+}
+
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+.timer-card,
+.log-card {
+  background: linear-gradient(180deg, var(--card), #0f0f10);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.timer-card {
+  text-align: center;
+}
+
+.subject-title {
+  margin: 0 0 14px;
+  color: var(--gold);
+  font-size: 1.7rem;
+}
+
+.circle-wrap {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  margin: 0 auto 16px;
+}
+
+.progress-ring {
+  transform: rotate(-90deg);
+}
+
+.progress-bg {
+  fill: none;
+  stroke: #2a2a2d;
+  stroke-width: 14;
+}
+
+.progress-fill {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 14;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.25s ease;
+}
+
+.circle-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.percent {
+  color: var(--gold);
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.percent-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+.goal-line {
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.time-readout {
+  font-size: 1.35rem;
+  margin: 0 0 18px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.control-button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.start-button {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.pause-button {
+  background: #2a2a2d;
+  color: var(--text);
+  border: 1px solid #4a4a4d;
+}
+
+.reset-button {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--border);
+}
+
+.running-note {
+  margin-top: 12px;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.log-card h2 {
+  color: var(--gold);
+  text-align: center;
+  margin-top: 0;
+}
+
+.weekly-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.week-row {
+  background: var(--card-soft);
+  border: 1px solid rgba(200, 166, 75, 0.22);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.week-title {
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.week-subjects {
+  display: grid;
+  gap: 6px;
+  color: var(--text);
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 16px;
+}
+
+@media (max-width: 700px) {
+  .app {
+    padding: 18px;
+  }
+
+  .timer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .circle-wrap {
+    width: 190px;
+    height: 190px;
+  }
+}
