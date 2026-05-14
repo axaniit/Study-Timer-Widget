@@ -2,13 +2,30 @@
   --bg: #fff7fb;
   --card: #ffffff;
   --card-soft: #fff0f7;
-  --pink: #f4a6c6;
-  --pink-deep: #d96f9f;
-  --pink-soft: rgba(244, 166, 198, 0.28);
+  --accent: #f4a6c6;
+  --accent-deep: #d96f9f;
+  --accent-soft: rgba(244, 166, 198, 0.28);
   --text: #3b2430;
   --muted: #856575;
   --border: rgba(217, 111, 159, 0.35);
   --danger: #b44b5d;
+  --shadow: rgba(217, 111, 159, 0.13);
+  --ring-bg: #f6dbe8;
+}
+
+body.dark {
+  --bg: #160d12;
+  --card: #21151b;
+  --card-soft: #2a1a22;
+  --accent: #f3a4c4;
+  --accent-deep: #ffb6d2;
+  --accent-soft: rgba(243, 164, 196, 0.18);
+  --text: #fff2f8;
+  --muted: #d7aabd;
+  --border: rgba(243, 164, 196, 0.38);
+  --danger: #ffb3c1;
+  --shadow: rgba(0, 0, 0, 0.28);
+  --ring-bg: #3b2730;
 }
 
 * {
@@ -18,10 +35,11 @@
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top, rgba(244, 166, 198, 0.22), transparent 35%),
+    radial-gradient(circle at top, var(--accent-soft), transparent 35%),
     var(--bg);
   color: var(--text);
   font-family: Georgia, "Times New Roman", serif;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 .app {
@@ -35,9 +53,26 @@ body {
   margin-bottom: 22px;
 }
 
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
+}
+
+.theme-toggle {
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+}
+
 .header h1 {
   margin: 0;
-  color: var(--pink-deep);
+  color: var(--accent-deep);
   font-size: clamp(2rem, 6vw, 3rem);
   letter-spacing: 0.03em;
 }
@@ -67,8 +102,12 @@ body {
 }
 
 .tab-button.active {
-  background: var(--pink);
+  background: var(--accent);
   color: #3b2430;
+}
+
+body.dark .tab-button.active {
+  color: #160d12;
 }
 
 .tab-panel {
@@ -97,11 +136,11 @@ body {
 
 .timer-card,
 .log-card {
-  background: linear-gradient(180deg, var(--card), #fffafd);
+  background: linear-gradient(180deg, var(--card), var(--card-soft));
   border: 1px solid var(--border);
   border-radius: 24px;
   padding: 24px;
-  box-shadow: 0 18px 40px rgba(217, 111, 159, 0.13);
+  box-shadow: 0 18px 40px var(--shadow);
 }
 
 .timer-card {
@@ -110,7 +149,7 @@ body {
 
 .subject-title {
   margin: 0 0 14px;
-  color: var(--pink-deep);
+  color: var(--accent-deep);
   font-size: 1.7rem;
 }
 
@@ -127,13 +166,13 @@ body {
 
 .progress-bg {
   fill: none;
-  stroke: #f6dbe8;
+  stroke: var(--ring-bg);
   stroke-width: 14;
 }
 
 .progress-fill {
   fill: none;
-  stroke: var(--pink-deep);
+  stroke: var(--accent-deep);
   stroke-width: 14;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.25s ease;
@@ -149,7 +188,7 @@ body {
 }
 
 .percent {
-  color: var(--pink-deep);
+  color: var(--accent-deep);
   font-size: 2.2rem;
   line-height: 1;
 }
@@ -187,30 +226,30 @@ body {
 }
 
 .start-button {
-  background: var(--pink);
+  background: var(--accent);
   color: #3b2430;
 }
 
 .pause-button {
-  background: #fff0f7;
+  background: var(--card-soft);
   color: var(--text);
   border: 1px solid var(--border);
 }
 
 .reset-button {
   background: transparent;
-  color: var(--pink-deep);
+  color: var(--accent-deep);
   border: 1px solid var(--border);
 }
 
 .running-note {
   margin-top: 12px;
-  color: var(--pink-deep);
+  color: var(--accent-deep);
   font-size: 0.9rem;
 }
 
 .log-card h2 {
-  color: var(--pink-deep);
+  color: var(--accent-deep);
   text-align: center;
   margin-top: 0;
 }
@@ -229,7 +268,7 @@ body {
 }
 
 .week-title {
-  color: var(--pink-deep);
+  color: var(--accent-deep);
   font-weight: bold;
   margin-bottom: 8px;
 }
@@ -258,5 +297,9 @@ body {
   .circle-wrap {
     width: 190px;
     height: 190px;
+  }
+
+  .top-bar {
+    justify-content: center;
   }
 }
