@@ -182,5 +182,5 @@ setInterval(() => {
 }, 1000);
 
 setInterval(() => {
-  loadState();
+  refreshStateSilently();
 }, 60000);
