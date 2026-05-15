@@ -38,7 +38,7 @@ function renderTimers() {
     const seconds = getLiveSeconds(subject.id);
     const goalSeconds = subject.goalHours * 3600;
     const progress = Math.min(seconds / goalSeconds, 1);
-    const percent = Math.round(progress * 100);
+    const percent = (progress * 100).toFixed(2);
 
     const radius = 82;
     const circumference = 2 * Math.PI * radius;
