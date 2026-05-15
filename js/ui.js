@@ -206,4 +206,4 @@ setInterval(() => {
 
 setInterval(() => {
   refreshStateSilently();
-}, 60000);
+}, 300000);
