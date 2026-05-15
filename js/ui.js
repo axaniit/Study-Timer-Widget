@@ -172,6 +172,29 @@ function setupTabs() {
   });
 }
 
+function setupThemeToggle() {
+  const button = document.getElementById("themeToggle");
+
+  const savedTheme = localStorage.getItem("studyTimerTheme") || "light";
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    button.textContent = "Light Mode";
+  } else {
+    document.body.classList.remove("dark");
+    button.textContent = "Dark Mode";
+  }
+
+  button.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark");
+
+    localStorage.setItem("studyTimerTheme", isDark ? "dark" : "light");
+
+    button.textContent = isDark ? "Light Mode" : "Dark Mode";
+  });
+}
+
+setupThemeToggle();
 setupTabs();
 loadState();
 
