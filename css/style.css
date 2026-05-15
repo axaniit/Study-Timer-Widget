@@ -175,7 +175,7 @@ body.dark .tab-button.active {
   stroke: var(--accent-deep);
   stroke-width: 14;
   stroke-linecap: round;
-  transition: stroke-dashoffset 0.25s ease;
+  transition: stroke-dashoffset 1s linear;
 }
 
 .circle-center {
