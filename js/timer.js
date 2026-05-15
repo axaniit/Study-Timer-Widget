@@ -5,6 +5,19 @@ let appState = {
   error: ""
 };
 
+let clientServerOffset = 0;
+
+function getCurrentServerSeconds() {
+  return Math.floor(Date.now() / 1000) + clientServerOffset;
+}
+
+function syncClientServerOffset(serverNow) {
+  if (!serverNow) return;
+
+  const clientNow = Math.floor(Date.now() / 1000);
+  clientServerOffset = Number(serverNow) - clientNow;
+}
+
 function getLiveSeconds(subjectId) {
   if (!appState.state) return 0;
 
@@ -12,12 +25,10 @@ function getLiveSeconds(subjectId) {
 
   if (
     appState.state.runningSubject === subjectId &&
-    appState.state.lastStart
+    Number(appState.state.lastStart || 0) > 0
   ) {
-    const startedAt = new Date(appState.state.lastStart).getTime();
-    const now = Date.now();
-
-    const elapsed = Math.max(0, Math.floor((now - startedAt) / 1000));
+    const startedAt = Number(appState.state.lastStart);
+    const elapsed = Math.max(0, getCurrentServerSeconds() - startedAt);
 
     return baseSeconds + elapsed;
   }
@@ -48,6 +59,8 @@ async function loadState() {
 
     const data = await getStateFromApi();
 
+    syncClientServerOffset(data.state.serverNow);
+
     appState.state = data.state;
     appState.history = data.history || [];
     appState.loading = false;
@@ -61,10 +74,29 @@ async function loadState() {
   }
 }
 
+async function refreshStateSilently() {
+  try {
+    const data = await getStateFromApi();
+
+    syncClientServerOffset(data.state.serverNow);
+
+    appState.state = data.state;
+    appState.history = data.history || [];
+
+    renderApp();
+
+  } catch (error) {
+    console.warn(error.message);
+  }
+}
+
 async function handleStart(subjectId) {
   try {
     setStatus("Saving timer...");
+
     const data = await startTimerInApi(subjectId);
+
+    syncClientServerOffset(data.state.serverNow);
 
     appState.state = data.state;
     appState.history = data.history || [];
@@ -79,7 +111,10 @@ async function handleStart(subjectId) {
 async function handlePause() {
   try {
     setStatus("Saving timer...");
+
     const data = await pauseTimerInApi();
+
+    syncClientServerOffset(data.state.serverNow);
 
     appState.state = data.state;
     appState.history = data.history || [];
@@ -100,7 +135,10 @@ async function handleResetSubject(subjectId) {
 
   try {
     setStatus("Resetting timer...");
+
     const data = await resetSubjectInApi(subjectId);
+
+    syncClientServerOffset(data.state.serverNow);
 
     appState.state = data.state;
     appState.history = data.history || [];
